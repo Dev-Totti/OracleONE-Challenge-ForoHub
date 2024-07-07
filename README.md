@@ -20,5 +20,5 @@ Este proyecto es parte del programa Oracle ONE: Next Education en colaboración 
 
 ---
 <p align="center">
-  <img src="https://github.com/Dev-Totti/OracleONE-Challenge-LiterAlura/assets/92545913/a041412c-8831-4b3b-9ecf-37194ed75440" width="300px">
+  <img src="https://github.com/Dev-Totti/OracleONE-Challenge-ForoHub/assets/92545913/7a23c3a1-47ce-427e-b86b-7cffe813b3a7" width="300px">
 </p>
