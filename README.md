@@ -4,16 +4,30 @@
 
 **Oracle ONE: Next Education | Alura**
 
-Este proyecto es parte del programa Oracle ONE: Next Education en colaboración con Alura. El objetivo de esta aplicación es ...
+Este proyecto es parte del programa Oracle ONE: Next Education en colaboración con Alura. El objetivo de esta aplicación es crear una API REST para gestionar un foro, permitiendo a los usuarios realizar operaciones CRUD (Crear, Consultar, Actualizar y Eliminar) sobre tópicos.
 
 ### Características Principales
-- ...
+- Crear un nuevo tópico.
+- Mostrar todos los tópicos creados.
+- Mostrar un tópico específico.
+- Actualizar un tópico.
+- Eliminar un tópico.
 
 ## Requisitos
 - Java 21 o superior
+- Spring Framework
+- Base de datos relacional (MySQL, PostgreSQL, ...)
 
 ### Instrucciones de Uso
-- ...
+- Clona el repositorio o descarga los archivos fuente.
+- Abre el proyecto en tu IDE de Java preferido.
+- Configura la conexión con la base de datos.
+- Compila y ejecuta la aplicación.
+- Utiliza herramientas como Postman o Insomnia para interactuar con la API.
+
+### Validaciones y Reglas de Negocio
+- Implementa validaciones de datos según las reglas de negocio definidas.
+- Asegura que los usuarios solo puedan acceder a la información autorizada mediante un servicio de autenticación y autorización.
 
 ## Capturas de Pantalla
 ...
