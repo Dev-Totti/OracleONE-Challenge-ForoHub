@@ -1,12 +1,9 @@
 package com.tottidev.ForoHub.domain.topic;
 
-import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDateTime;
-
-public record TopicData(
+public record TopicDataCreate(
         @NotBlank
         String title,
 
@@ -14,16 +11,9 @@ public record TopicData(
         String message,
 
         @NotNull
-        @Future
-        LocalDateTime creationDate,
+        Long author,
 
         @NotNull
-        Status status,
-
-        @NotNull
-        Long userId,
-
-        @NotNull
-        Long courseId
+        Long course
 ) {
 }

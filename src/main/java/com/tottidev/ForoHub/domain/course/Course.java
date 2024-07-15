@@ -1,14 +1,12 @@
 package com.tottidev.ForoHub.domain.course;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Table(name = "courses")
 @Entity(name = "Course")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -37,9 +35,5 @@ public class Course {
         if (courseDataUpdate.category() != null) {
             this.category = courseDataUpdate.category();
         }
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 }

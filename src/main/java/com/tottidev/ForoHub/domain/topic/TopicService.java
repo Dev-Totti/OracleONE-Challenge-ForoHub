@@ -5,6 +5,8 @@ import com.tottidev.ForoHub.domain.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class TopicService {
 
@@ -17,37 +19,49 @@ public class TopicService {
     @Autowired
     private CourseRepository courseRepository;
 
-    public Topic createTopic(TopicData topicData) {
+    public TopicDataDisplay createTopic(TopicDataCreate topicDataCreate) {
 
-        var user = userRepository.findById(topicData.userId())
+        var user = userRepository.findById(topicDataCreate.author())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        var course = courseRepository.findById(topicData.courseId())
+        var course = courseRepository.findById(topicDataCreate.course())
                 .orElseThrow(() -> new IllegalArgumentException("Course not found"));
 
-        var title = topicData.title();
-        var message = topicData.message();
-        var creationDate = topicData.creationDate();
-        var status = topicData.status();
+        var title = topicDataCreate.title();
+        var message = topicDataCreate.message();
+        var creationDate = LocalDateTime.now();
 
         if (topicRepository.existsByTitleIgnoreCase(title) && topicRepository.existsByMessageIgnoreCase(message)) {
             throw new IllegalArgumentException("Topic already exists");
         }
 
-        var topic = new Topic(
-                null,
-                title,
-                message,
-                creationDate,
-                status,
-                user,
-                course
-        );
-
+        var topic = new Topic(null, title, message, creationDate, Status.OPEN, user, course);
         topicRepository.save(topic);
-
-        return topic;
-
+        return new TopicDataDisplay(topic);
     }
 
+    public TopicDataDisplay updateTopic(Long id, TopicDataUpdate topicDataUpdate) {
+
+        var topic = topicRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Topic not found"));
+        var author = userRepository.findById(topicDataUpdate.author())
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        var course = courseRepository.findById(topicDataUpdate.course())
+                .orElseThrow(() -> new IllegalArgumentException("Course not found"));
+
+        topic.setTitle(topicDataUpdate.title());
+        topic.setMessage(topicDataUpdate.message());
+        topic.setStatus(topicDataUpdate.status());
+        topic.setAuthor(author);
+        topic.setCourse(course);
+
+        return new TopicDataDisplay(topic);
+    }
+
+
+    public void deleteTopic(Long id) {
+        var topic = topicRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Topic not found"));
+        topicRepository.delete(topic);
+    }
 }
