@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
@@ -35,6 +36,21 @@ public class User implements UserDetails {
 
     private Boolean active;
 
+    public User(UserDataRegister userDataRegister) {
+        this.email = userDataRegister.email();
+        this.username = userDataRegister.username();
+        this.password = userDataRegister.password();
+        this.name = userDataRegister.name();
+        this.active = true;
+    }
+
+    public User(UserDataRegister userDataRegister, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.email = userDataRegister.email();
+        this.username = userDataRegister.username();
+        this.password = bCryptPasswordEncoder.encode(userDataRegister.password());
+        this.name = userDataRegister.name();
+        this.active = true;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -59,5 +75,14 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void update(UserDataUpdate userDataUpdate) {
+        this.name = userDataUpdate.name();
+
     }
 }
