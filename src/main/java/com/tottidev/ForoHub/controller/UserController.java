@@ -24,11 +24,6 @@ public class UserController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @GetMapping
-    public ResponseEntity<Page<UserDataDisplay>> getUsers(@PageableDefault(size=5) Pageable pageable) {
-        return ResponseEntity.ok(userRepository.findByActiveTrue(pageable).map(UserDataDisplay::new));
-    }
-
     @PostMapping
     @Transactional
     public ResponseEntity<?> registerUser(@RequestBody @Valid UserDataRegister userDataRegister, UriComponentsBuilder uriComponentsBuilder) {
@@ -39,6 +34,11 @@ public class UserController {
 
         return ResponseEntity.created(url).body(userDataResponse);
 
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<UserDataDisplay>> getUsers(@PageableDefault(size=5) Pageable pageable) {
+        return ResponseEntity.ok(userRepository.findByActiveTrue(pageable).map(UserDataDisplay::new));
     }
 
     @PutMapping

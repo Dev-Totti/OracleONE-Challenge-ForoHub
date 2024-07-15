@@ -22,4 +22,24 @@ public class Course {
 
     private String category;
 
+    private boolean active = true;
+
+    public Course(CourseDataRegister courseDataRegister) {
+        this.name = courseDataRegister.name();
+        this.category = courseDataRegister.category();
+    }
+
+    public void update(CourseDataUpdate courseDataUpdate) {
+        if (courseDataUpdate.name() != null) {
+            this.name = courseDataUpdate.name();
+        }
+
+        if (courseDataUpdate.category() != null) {
+            this.category = courseDataUpdate.category();
+        }
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }
