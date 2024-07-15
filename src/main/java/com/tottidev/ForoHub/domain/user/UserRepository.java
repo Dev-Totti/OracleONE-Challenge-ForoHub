@@ -1,5 +1,8 @@
 package com.tottidev.ForoHub.domain.user;
 
+import io.micrometer.observation.ObservationFilter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
@@ -8,4 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     UserDetails findByUsername(String username);
+
+    Page<User> findByActiveTrue(Pageable pageable);
+
 }
