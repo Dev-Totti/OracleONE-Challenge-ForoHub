@@ -30,7 +30,7 @@ Este proyecto es parte del programa Oracle ONE: Next Education en colaboración 
 - Asegura que los usuarios solo puedan acceder a la información autorizada mediante un servicio de autenticación y autorización.
 
 ## Capturas de Pantalla
-...
+![1](https://github.com/user-attachments/assets/0aeac116-a17c-4203-8468-34caf8d4f1ca)
 
 ---
 <p align="center">
