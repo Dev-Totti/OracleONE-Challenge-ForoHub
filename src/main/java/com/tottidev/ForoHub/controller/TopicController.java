@@ -56,7 +56,7 @@ public class TopicController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TopicDataDisplay> getTopic(@PathVariable Long id) {
-        com.tottidev.ForoHub.domain.topic.Topic topic = topicRepository.getReferenceById(id);
+        Topic topic = topicRepository.getReferenceById(id);
         return ResponseEntity.ok(new TopicDataDisplay(topic));
     }
 
